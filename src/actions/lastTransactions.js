@@ -1,8 +1,7 @@
 import axios from "axios";
-import { FETCH_LAST_TRANSACTIONS } from "../types";
-
-const URL_LAST_TRANSACTIONS =
-  "https://blockchain.info/unconfirmed-transactions?format=json";
+import { applyCORSToUrl } from "../utils";
+import { FETCH_LAST_TRANSACTIONS } from "../constants/types";
+import { URL_LAST_TRANSACTIONS } from "../constants/api";
 
 const normalizeLastTransactionsPayload = ({ txs: transactions }) =>
   transactions.map(({ weight, time, hash }) => ({
@@ -11,11 +10,11 @@ const normalizeLastTransactionsPayload = ({ txs: transactions }) =>
     hash
   }));
 
-// asynchronous action creator
 export const fetchLastTransactions = () => {
   return dispatch => {
+    const url = applyCORSToUrl(`${URL_LAST_TRANSACTIONS}`);
     return axios
-      .get(`${URL_LAST_TRANSACTIONS}&cors=true`)
+      .get(url)
       .then(response => {
         dispatch({
           type: FETCH_LAST_TRANSACTIONS,

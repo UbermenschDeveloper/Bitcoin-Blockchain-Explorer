@@ -1,9 +1,9 @@
 import axios from "axios";
-import { FETCH_BLOCK } from "../types";
+import { applyCORSToUrl } from "../utils";
+import { FETCH_BLOCK } from "../constants/types";
+import { URL_BLOCK } from "../constants/api";
 
-const URL_BLOCK = "https://blockchain.info/rawblock";
-
-const normalizeBlock = (block) => ({
+const normalizeBlock = block => ({
   transactions: block.tx.map(({ weight, time, hash }) => ({
     weight,
     time,
@@ -29,8 +29,9 @@ const normalizeBlock = (block) => ({
 
 export const fetchBlock = hash => {
   return dispatch => {
+    const url = applyCORSToUrl(`${URL_BLOCK}/${hash}`);
     return axios
-      .get(`${URL_BLOCK}/${hash}?cors=true`)
+      .get(url)
       .then(response => {
         dispatch({ type: FETCH_BLOCK, payload: normalizeBlock(response.data) });
       })

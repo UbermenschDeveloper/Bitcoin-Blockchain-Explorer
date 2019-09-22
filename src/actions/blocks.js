@@ -1,7 +1,7 @@
 import axios from "axios";
-import { FETCH_BLOCKS } from "../types";
-
-const URL_BLOCKS = "https://blockchain.info/blocks";
+import { applyCORSToUrl } from "../utils";
+import { FETCH_BLOCKS } from "../constants/types";
+import { URL_BLOCKS } from '../constants/api';
 
 const normalizeBlocks = ({ blocks }) =>
   blocks.map(({ height, time, hash }) => ({
@@ -12,8 +12,9 @@ const normalizeBlocks = ({ blocks }) =>
 
 export const fetchBlocks = (timestamp = new Date().getTime()) => {
   return dispatch => {
+    const url = applyCORSToUrl(`${URL_BLOCKS}/${timestamp}`);
     return axios
-      .get(`${URL_BLOCKS}/${timestamp}?format=json&cors=true`)
+      .get(url)
       .then(response => {
         dispatch({
           type: FETCH_BLOCKS,

@@ -1,4 +1,4 @@
-import {FETCH_TRANSACTION} from '../types';
+import {FETCH_TRANSACTION} from '../constants/types';
 
 const transaction = (state = {}, action) => {
   switch (action.type) {

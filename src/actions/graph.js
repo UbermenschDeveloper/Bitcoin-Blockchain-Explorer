@@ -1,8 +1,7 @@
 import axios from "axios";
-import { FETCH_GRAPH } from "../types";
-
-const URL_GRAPH =
-  "https://blockchain.info/charts/market-price?format=json&timespan=30days";
+import { applyCORSToUrl } from "../utils";
+import { FETCH_GRAPH } from "../constants/types";
+import { URL_GRAPH } from '../constants/api';
 
 const normalizeGraph = ({ values: graph }) =>
   graph.map(item => ({
@@ -12,8 +11,9 @@ const normalizeGraph = ({ values: graph }) =>
 
 export const fetchGraph = () => {
   return dispatch => {
+    const url = applyCORSToUrl(`${URL_GRAPH}`);
     return axios
-      .get(`${URL_GRAPH}&cors=true`)
+      .get(`${url}&timespan=30days`)
       .then(response => {
         dispatch({ type: FETCH_GRAPH, payload: normalizeGraph(response.data) });
       })

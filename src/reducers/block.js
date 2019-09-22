@@ -1,4 +1,4 @@
-import {FETCH_BLOCK} from '../types';
+import {FETCH_BLOCK} from '../constants/types';
 
 const block = (state = {}, action) => {
   switch (action.type) {

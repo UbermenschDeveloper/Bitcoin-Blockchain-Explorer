@@ -1,8 +1,8 @@
 import axios from "axios";
-import sb from 'satoshi-bitcoin';
-import { FETCH_TRANSACTION } from "../types";
-
-const URL_TRANSACTION = "https://blockchain.info/rawtx";
+import sb from "satoshi-bitcoin";
+import { applyCORSToUrl } from "../utils";
+import { FETCH_TRANSACTION } from "../constants/types";
+import { URL_TRANSACTION } from "../constants/api";
 
 const normalizeTransactionPayload = transaction => ({
   summary: {
@@ -13,20 +13,20 @@ const normalizeTransactionPayload = transaction => ({
   },
   direction: {
     addressesFrom: transaction.inputs.map(input => ({
-      address: input.prev_out && input.prev_out.addr || 'No specified',
+      address: (input.prev_out && input.prev_out.addr) || "No specified"
     })),
     addressesTo: transaction.out.map(output => ({
-      address: output.addr || 'No specified',
-      value: `${sb.toBitcoin(output.value)} BTC`,
+      address: output.addr || "No specified",
+      value: `${sb.toBitcoin(output.value)} BTC`
     }))
   }
 });
 
-// asynchronous action creator
 export const fetchTransaction = hash => {
   return dispatch => {
+    const url = applyCORSToUrl(`${URL_TRANSACTION}/${hash}`);
     return axios
-      .get(`${URL_TRANSACTION}/${hash}?cors=true`)
+      .get(url)
       .then(response => {
         dispatch({
           type: FETCH_TRANSACTION,

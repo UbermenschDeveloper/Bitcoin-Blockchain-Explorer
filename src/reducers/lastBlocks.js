@@ -1,4 +1,4 @@
-import {FETCH_LAST_BLOCKS} from '../types';
+import {FETCH_LAST_BLOCKS} from '../constants/types';
 
 const lastBlocks = (state = [], action) => {
   switch (action.type) {

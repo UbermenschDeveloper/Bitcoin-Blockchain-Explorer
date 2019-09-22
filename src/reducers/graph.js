@@ -1,4 +1,4 @@
-import {FETCH_GRAPH} from '../types';
+import {FETCH_GRAPH} from '../constants/types';
 
 const graph = (state = [], action) => {
   switch (action.type) {

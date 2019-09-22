@@ -1,4 +1,4 @@
-import {FETCH_LAST_TRANSACTIONS} from '../types';
+import {FETCH_LAST_TRANSACTIONS} from '../constants/types';
 
 const lastTransactions = (state = [], action) => {
   switch (action.type) {
