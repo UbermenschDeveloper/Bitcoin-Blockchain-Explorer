@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Table from "../../ui/Table";
 import Card from "../../ui/Card";
 
-const HEAD_CELLS = ["Height", "Hash", "Title"];
+const HEAD_CELLS = ["Height", "Time", "Hash"];
 const TITLE = "Last 10 blocks";
 
 const Blocks = ({ blocks }) => (

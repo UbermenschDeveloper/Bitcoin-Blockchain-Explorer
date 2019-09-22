@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import TablePagination from "../ui/TablePagination";
 
-const HEAD_CELLS = ["Height", "Hash", "Title"];
+const HEAD_CELLS = ["Height", "Time", "Hash"];
 const TITLE = "Blocks";
 
 const BlocksLayout = ({ blocks, onBlockClick }) => (
