@@ -1,4 +1,5 @@
 import axios from "axios";
+import sb from 'satoshi-bitcoin';
 import { FETCH_TRANSACTION } from "../types";
 
 const URL_TRANSACTION = "https://blockchain.info/rawtx";
@@ -12,11 +13,11 @@ const normalizeTransactionPayload = transaction => ({
   },
   direction: {
     addressesFrom: transaction.inputs.map(input => ({
-      address: input.prev_out && input.prev_out.addr
+      address: input.prev_out && input.prev_out.addr || 'No specified',
     })),
     addressesTo: transaction.out.map(output => ({
-      address: output.addr,
-      value: output.value
+      address: output.addr || 'No specified',
+      value: `${sb.toBitcoin(output.value)} BTC`,
     }))
   }
 });
