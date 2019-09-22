@@ -1,6 +1,8 @@
+import {FETCH_LAST_TRANSACTIONS} from '../types';
+
 const lastTransactions = (state = [], action) => {
   switch (action.type) {
-    case "FETCH_LAST_TRANSACTIONS":
+    case FETCH_LAST_TRANSACTIONS:
       return [...action.payload];
     default:
       return state;
