@@ -1,15 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import TransactionLayout from "../components/TransactionLayout";
 import TransactionDirection from "../components/TransactionDirection";
 import TransactionSummary from "../components/TransactionSummary";
 import Loader from "../../ui/Loader";
 import { SINGLE_TRANSACTION_MOCK } from "../../mocks/mocks";
 
-const useDirection = () => {
-  const [direction, setDirection] = useState(null);
-
-  useEffect(() => {
-    setDirection({
+const useTransaction = () => {
+  const dispatch = useDispatch();
+  const transaction = useSelector(state => state.transaction);
+  const mockedPayload = {
+    summary: {
+      hash: SINGLE_TRANSACTION_MOCK.hash,
+      size: SINGLE_TRANSACTION_MOCK.size,
+      weight: SINGLE_TRANSACTION_MOCK.weight,
+      receivingTime: new Date(
+        SINGLE_TRANSACTION_MOCK.time * 1000
+      ).toDateString()
+    },
+    direction: {
       addressesFrom: SINGLE_TRANSACTION_MOCK.inputs.map(input => ({
         address: input.prev_out.addr,
         value: input.prev_out.value
@@ -18,33 +27,19 @@ const useDirection = () => {
         address: output.addr,
         value: output.value
       }))
-    });
-  }, []);
-
-  return direction;
-};
-
-const useSummary = () => {
-  const [summary, setSummary] = useState({});
+    }
+  };
 
   useEffect(() => {
-    setSummary({
-      hash: SINGLE_TRANSACTION_MOCK.hash,
-      size: SINGLE_TRANSACTION_MOCK.size,
-      weight: SINGLE_TRANSACTION_MOCK.weight,
-      receivingTime: new Date(
-        SINGLE_TRANSACTION_MOCK.time * 1000
-      ).toDateString()
-    });
+    dispatch({type: 'FETCH_TRANSACTION', payload: mockedPayload});  
   }, []);
 
-  return summary;
+  return transaction;
 };
 
 const Transaction = () => {
-  const direction = useDirection();
-  const summary = useSummary();
-
+  const {summary, direction} = useTransaction();
+  
   if (!summary || !direction) return <Loader />;
 
   return (

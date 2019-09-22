@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import BlocksLayout from "./BlocksLayout";
 import { BLOCKS_MOCK } from "../mocks/mocks";
 
 const useBlocks = () => {
-  const [blocks, setBlocks] = useState([]);
+  const dispatch = useDispatch();
+  const blocks = useSelector(state => state.blocks);
+
+  const mockedPayload = [...BLOCKS_MOCK];
 
   useEffect(() => {
-    setBlocks([...BLOCKS_MOCK]);
+    dispatch({ type: "FETCH_BLOCKS", payload: mockedPayload });
   }, []);
 
   return blocks;
