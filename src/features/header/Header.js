@@ -1,10 +1,12 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
+import SearchIcon from "@material-ui/icons/Search";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
+import Input from './Input';
+import { fade, makeStyles } from "@material-ui/core/styles";
 
 const TITLE = "Bitcoin Blockchain Explorer";
 
@@ -14,10 +16,38 @@ const useStyles = makeStyles(theme => ({
     marginBottom: 10
   },
   title: {
-    cursor: "pointer",
+    cursor: "pointer"
   },
   toolbar: {
-    justifyContent: "space-between",
+    justifyContent: "space-between"
+  },
+  actions: {
+    display: "flex"
+  },
+  search: {
+    flexGrow: 1,
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    "&:hover": {
+      backgroundColor: fade(theme.palette.common.white, 0.25)
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: theme.spacing(3),
+      width: "auto"
+    }
+  },
+  searchIcon: {
+    width: theme.spacing(7),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   }
 }));
 
@@ -37,9 +67,18 @@ const Header = ({ history }) => {
             {TITLE}
           </Typography>
 
-          <Button color="inherit" onClick={() => history.push("/blocks")}>
-            Blocks
-          </Button>
+          <div className={classes.actions}>
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <Input />
+            </div>
+
+            <Button color="inherit" onClick={() => history.push("/blocks")}>
+              Blocks
+            </Button>
+          </div>
         </Toolbar>
       </AppBar>
     </div>

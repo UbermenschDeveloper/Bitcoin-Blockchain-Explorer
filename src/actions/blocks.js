@@ -15,8 +15,6 @@ export const fetchBlocks = (timestamp = new Date().getTime()) => {
     return axios
       .get(`${URL_BLOCKS}/${timestamp}?format=json&cors=true`)
       .then(response => {
-        console.log(response);
-
         dispatch({
           type: FETCH_BLOCKS,
           payload: normalizeBlocks(response.data)
