@@ -5,7 +5,8 @@ import Blocks from "../components/Blocks";
 import Transactions from "../components/Transactions";
 import HomeLayout from "../components/HomeLayout";
 import { fetchGraph } from '../../../actions/graph';
-import { BLOCKS_MOCK, TRANSACTIONS_MOCK } from "../../mocks/mocks";
+import { fetchLastTransactions } from '../../../actions/lastTransactions';
+import { fetchLastBlocks } from '../../../actions/lastBlocks';
 
 const useGraph = () => {
   const dispatch = useDispatch();
@@ -22,14 +23,8 @@ const useLastTransactions = () => {
   const dispatch = useDispatch();
   const lastTransactions = useSelector(state => state.lastTransactions);
 
-  const mockedPayload = TRANSACTIONS_MOCK.map(({ weight, time, hash }) => ({
-    weight,
-    time,
-    hash
-  }));
-
   useEffect(() => {
-    dispatch({ type: "FETCH_LAST_TRANSACTIONS", payload: mockedPayload });
+    dispatch(fetchLastTransactions());
   }, []);
 
   return lastTransactions;
@@ -39,10 +34,8 @@ const useLastBlocks = () => {
   const dispatch = useDispatch();
   const lastBlocks = useSelector(state => state.lastBlocks);
 
-  const mockedPayload = BLOCKS_MOCK;
-
   useEffect(() => {
-    dispatch({ type: "FETCH_LAST_BLOCKS", payload: mockedPayload });
+    dispatch(fetchLastBlocks());
   }, []);
 
   return lastBlocks;

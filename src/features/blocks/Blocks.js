@@ -2,17 +2,15 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import BlocksLayout from "./BlocksLayout";
-import { BLOCKS_MOCK } from "../mocks/mocks";
+import { fetchBlocks } from "../../actions/blocks";
 
 const useBlocks = () => {
   const dispatch = useDispatch();
   const blocks = useSelector(state => state.blocks);
 
-  const mockedPayload = [...BLOCKS_MOCK];
-
   useEffect(() => {
-    dispatch({ type: "FETCH_BLOCKS", payload: mockedPayload });
-  }, [dispatch, mockedPayload]);
+    dispatch(fetchBlocks());
+  }, [dispatch]);
 
   return blocks;
 };
@@ -20,7 +18,7 @@ const useBlocks = () => {
 const Blocks = ({ history }) => {
   const blocks = useBlocks();
 
-  const handleBlockClick = ({hash}) => {
+  const handleBlockClick = ({ hash }) => {
     history.push(`block/${hash}`);
   };
 
