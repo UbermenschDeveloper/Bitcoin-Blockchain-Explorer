@@ -1,6 +1,5 @@
 import axios from "axios";
-import sb from "satoshi-bitcoin";
-import { applyCORSToUrl } from "../utils";
+import { applyCORSToUrl, satoshiToBTC } from "../utils";
 import { FETCH_TRANSACTION } from "../constants/types";
 import { URL_TRANSACTION } from "../constants/api";
 
@@ -17,7 +16,7 @@ const normalizeTransactionPayload = transaction => ({
     })),
     addressesTo: transaction.out.map(output => ({
       address: output.addr || "No specified",
-      value: `${sb.toBitcoin(output.value)} BTC`
+      value: satoshiToBTC(output.value),
     }))
   }
 });
