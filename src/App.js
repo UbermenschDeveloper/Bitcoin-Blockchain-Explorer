@@ -14,8 +14,8 @@ function App() {
       <Container maxWidth="lg">
         <Route path="/" exact component={Home} />
         <Route path="/blocks" component={Blocks} />
-        <Route path="/block" component={Block} />
-        <Route path="/transaction" component={Transaction} />
+        <Route path="/block/:hash" component={Block} />
+        <Route path="/transaction/:hash" component={Transaction} />
       </Container>
     </Router>
   );

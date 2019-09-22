@@ -142,7 +142,7 @@ export default function TablePagination({ bodyRows, headRow, onRowClick }) {
             {bodyRows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, index) => (
-                <TableRow key={index} onClick={onRowClick} className={classes.row}>
+                <TableRow key={index} onClick={() => onRowClick(row)} className={classes.row}>
                   {Object.values(row).map((cell, index) => (
                     <TableCell key={index}>
                       <Typography noWrap className={classes.cell}>

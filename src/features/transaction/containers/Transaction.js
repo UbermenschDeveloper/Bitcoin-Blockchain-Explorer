@@ -1,44 +1,25 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { withRouter } from "react-router-dom";
 import TransactionLayout from "../components/TransactionLayout";
 import TransactionDirection from "../components/TransactionDirection";
 import TransactionSummary from "../components/TransactionSummary";
 import Loader from "../../ui/Loader";
-import { SINGLE_TRANSACTION_MOCK } from "../../mocks/mocks";
+import { fetchTransaction } from '../../../actions/transaction';
 
-const useTransaction = () => {
+const useTransaction = (hash) => {
   const dispatch = useDispatch();
   const transaction = useSelector(state => state.transaction);
-  const mockedPayload = {
-    summary: {
-      hash: SINGLE_TRANSACTION_MOCK.hash,
-      size: SINGLE_TRANSACTION_MOCK.size,
-      weight: SINGLE_TRANSACTION_MOCK.weight,
-      receivingTime: new Date(
-        SINGLE_TRANSACTION_MOCK.time * 1000
-      ).toDateString()
-    },
-    direction: {
-      addressesFrom: SINGLE_TRANSACTION_MOCK.inputs.map(input => ({
-        address: input.prev_out.addr,
-        value: input.prev_out.value
-      })),
-      addressesTo: SINGLE_TRANSACTION_MOCK.out.map(output => ({
-        address: output.addr,
-        value: output.value
-      }))
-    }
-  };
 
   useEffect(() => {
-    dispatch({type: 'FETCH_TRANSACTION', payload: mockedPayload});  
-  }, []);
+    dispatch(fetchTransaction(hash));  
+  }, [hash, dispatch]);
 
   return transaction;
 };
 
-const Transaction = () => {
-  const {summary, direction} = useTransaction();
+const Transaction = ({match}) => {
+  const {summary, direction} = useTransaction(match.params.hash);
   
   if (!summary || !direction) return <Loader />;
 
@@ -56,4 +37,4 @@ const Transaction = () => {
   );
 };
 
-export default Transaction;
+export default withRouter(Transaction);

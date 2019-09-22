@@ -1,24 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Graph from "../components/Graph";
 import Blocks from "../components/Blocks";
 import Transactions from "../components/Transactions";
 import HomeLayout from "../components/HomeLayout";
-import { GRAPH_MOCK, BLOCKS_MOCK, TRANSACTIONS_MOCK } from "../../mocks/mocks";
+import { fetchGraph } from '../../../actions/graph';
+import { BLOCKS_MOCK, TRANSACTIONS_MOCK } from "../../mocks/mocks";
 
 const useGraph = () => {
   const dispatch = useDispatch();
   const graph = useSelector(state => state.graph);
 
-  const mockedPayload = GRAPH_MOCK.map(item => ({
-    usd: item.y,
-    date: new Date(item.x * 1000).toDateString()
-  }));
-
   useEffect(() => {
-    dispatch({ type: "FETCH_GRAPH", payload: mockedPayload });
-  }, []);
-
+    dispatch(fetchGraph());
+  }, [dispatch]);
+  
   return graph;
 };
 

@@ -12,7 +12,7 @@ const useBlocks = () => {
 
   useEffect(() => {
     dispatch({ type: "FETCH_BLOCKS", payload: mockedPayload });
-  }, []);
+  }, [dispatch, mockedPayload]);
 
   return blocks;
 };
@@ -20,8 +20,8 @@ const useBlocks = () => {
 const Blocks = ({ history }) => {
   const blocks = useBlocks();
 
-  const handleBlockClick = () => {
-    history.push("block");
+  const handleBlockClick = ({hash}) => {
+    history.push(`block/${hash}`);
   };
 
   return <BlocksLayout blocks={blocks} onBlockClick={handleBlockClick} />;
