@@ -15,8 +15,6 @@ export const fetchLastBlocks = (timestamp = new Date().getTime()) => {
     return axios
       .get(`${URL_LAST_BLOCKS}/${timestamp}?format=json&cors=true`)
       .then(response => {
-        console.log(response);
-
         dispatch({
           type: FETCH_LAST_BLOCKS,
           payload: normalizeLastBlocks(response.data)

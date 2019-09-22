@@ -32,7 +32,6 @@ export const fetchBlock = hash => {
     return axios
       .get(`${URL_BLOCK}/${hash}?cors=true`)
       .then(response => {
-        console.log("response", response);
         dispatch({ type: FETCH_BLOCK, payload: normalizeBlock(response.data) });
       })
       .catch(error => {

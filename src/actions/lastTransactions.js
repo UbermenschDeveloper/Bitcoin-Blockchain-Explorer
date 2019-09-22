@@ -17,8 +17,6 @@ export const fetchLastTransactions = () => {
     return axios
       .get(`${URL_LAST_TRANSACTIONS}&cors=true`)
       .then(response => {
-        console.log(response);
-
         dispatch({
           type: FETCH_LAST_TRANSACTIONS,
           payload: normalizeLastTransactionsPayload(response.data)
