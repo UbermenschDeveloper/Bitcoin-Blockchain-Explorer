@@ -6,7 +6,7 @@ import TablePagination from "../../ui/TablePagination";
 const HEAD_CELLS = ["Weight", "Time", "Hash"];
 const TITLE = "Transactions";
 
-const TransactionsPagination = ({ transactions, onTransactionClick }) => (
+const Transactions = ({ transactions, onTransactionClick }) => (
   <>
     <Typography variant="h5" gutterBottom>
       {TITLE}
@@ -19,7 +19,7 @@ const TransactionsPagination = ({ transactions, onTransactionClick }) => (
   </>
 );
 
-TransactionsPagination.propTypes = {
+Transactions.propTypes = {
   transactions: PropTypes.arrayOf(
     PropTypes.shape({
       weight: PropTypes.number.isRequired,
@@ -30,4 +30,4 @@ TransactionsPagination.propTypes = {
   onTransactionClick: PropTypes.func.isRequired
 };
 
-export default TransactionsPagination;
+export default Transactions;

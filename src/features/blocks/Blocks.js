@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import BlocksLayout from "./BlocksLayout";
@@ -23,6 +24,12 @@ const Blocks = ({ history }) => {
   };
 
   return <BlocksLayout blocks={blocks} onBlockClick={handleBlockClick} />;
+};
+
+Blocks.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
 };
 
 export default withRouter(Blocks);

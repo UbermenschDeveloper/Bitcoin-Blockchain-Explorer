@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Table, TableBody, TableRow, TableCell } from "@material-ui/core";
 import Card from "../../ui/Card";
 
@@ -24,5 +25,13 @@ const TransactionSummary = ({summary: {size, weight, receivingTime}}) => (
     </Table>
   </Card>
 );
+
+TransactionSummary.propTypes = {
+  summary: PropTypes.shape({
+    size: PropTypes.number.isRequired,
+    weight: PropTypes.number.isRequired,
+    receivingTime: PropTypes.number.isRequired,
+  })
+};
 
 export default TransactionSummary;

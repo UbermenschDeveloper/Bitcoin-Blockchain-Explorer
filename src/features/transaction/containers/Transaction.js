@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import TransactionLayout from "../components/TransactionLayout";
@@ -35,6 +36,14 @@ const Transaction = ({match}) => {
       summary={<TransactionSummary summary={summary} />}
     />
   );
+};
+
+Transaction.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      hash: PropTypes.string.isRequired,
+    }).isRequired
+  }).isRequired,
 };
 
 export default withRouter(Transaction);

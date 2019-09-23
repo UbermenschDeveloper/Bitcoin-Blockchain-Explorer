@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Card from "../../ui/Card";
 import { Table, TableBody, TableRow, TableCell } from "@material-ui/core";
 
@@ -55,5 +56,18 @@ const BlockSummary = ({
     </Table>
   </Card>
 );
+
+BlockSummary.propTypes = {
+  summary: PropTypes.shape({
+    transactionsCount: PropTypes.number.isRequired,
+    bits: PropTypes.number.isRequired,
+    size: PropTypes.number.isRequired,
+    fee: PropTypes.number.isRequired,
+    time: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    receivedTime: PropTypes.number.isRequired,
+    relayedBy: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default BlockSummary;

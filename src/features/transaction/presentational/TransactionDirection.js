@@ -1,10 +1,16 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import Divider from "@material-ui/core/Divider";
-import { Table, TableBody, TableRow, TableCell } from "@material-ui/core";
+import PropTypes from "prop-types";
+import {
+  Table,
+  TableBody,
+  TableRow,
+  TableCell,
+  Grid,
+  ListItem,
+  List,
+  ListItemText,
+  Divider
+} from "@material-ui/core";
 import Card from "../../ui/Card";
 
 const TransactionDirection = ({
@@ -38,5 +44,22 @@ const TransactionDirection = ({
     </Grid>
   </Card>
 );
+
+Transaction.propTypes = {
+  transactionHash: PropTypes.string.isRequired,
+  addresses: PropTypes.shape({
+    addressesFrom: PropTypes.arrayOf(
+      PropTypes.shape({
+        address: PropTypes.string
+      })
+    ).isRequired,
+    addressesTo: PropTypes.arrayOf(
+      PropTypes.shape({
+        address: PropTypes.string,
+        value: PropTypes.string
+      })
+    ).isRequired
+  })
+};
 
 export default TransactionDirection;

@@ -23,4 +23,10 @@ const TransactionLayout = ({
   </>
 );
 
+Transaction.propTypes = {
+  transactionHash: PropTypes.string.isRequired,
+  direction: PropTypes.node.isRequired,
+  summary: PropTypes.node.isRequired,
+};
+
 export default TransactionLayout;
