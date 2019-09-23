@@ -30,7 +30,7 @@ TransactionSummary.propTypes = {
   summary: PropTypes.shape({
     size: PropTypes.number.isRequired,
     weight: PropTypes.number.isRequired,
-    receivingTime: PropTypes.number.isRequired,
+    receivingTime: PropTypes.string.isRequired,
   })
 };
 

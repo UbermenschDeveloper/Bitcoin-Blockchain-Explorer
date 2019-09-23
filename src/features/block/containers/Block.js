@@ -9,8 +9,7 @@ import BlockSummary from "../presentational/BlockSummary";
 import Loader from "../../ui/Loader";
 import { fetchBlock } from "../../../actions/block";
 
-const useBlock = hash => {
-  const dispatch = useDispatch();
+const useBlock = (hash, dispatch) => {
   const block = useSelector(state => state.block);
 
   useEffect(() => {
@@ -21,7 +20,10 @@ const useBlock = hash => {
 };
 
 const Block = ({ history, match }) => {
-  const { transactions, summary, hashes } = useBlock(match.params.hash);
+  const { transactions, summary, hashes } = useBlock(
+    match.params.hash,
+    useDispatch(),
+  );
 
   const handleTransactionClick = ({ hash }) => {
     history.push(`/transaction/${hash}`);
@@ -50,9 +52,9 @@ Block.propTypes = {
   }).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
-      hash: PropTypes.string.isRequired,
+      hash: PropTypes.string.isRequired
     }).isRequired
-  }).isRequired,
+  }).isRequired
 };
 
 export default withRouter(Block);

@@ -6,8 +6,7 @@ import BlocksLayout from "./BlocksLayout";
 import Loader from "../ui/Loader";
 import { fetchBlocks } from "../../actions/blocks";
 
-const useBlocks = () => {
-  const dispatch = useDispatch();
+const useBlocks = (dispatch) => {
   const blocks = useSelector(state => state.blocks);
 
   useEffect(() => {
@@ -18,7 +17,8 @@ const useBlocks = () => {
 };
 
 const Blocks = ({ history }) => {
-  const blocks = useBlocks();
+  const dispatch = useDispatch();
+  const blocks = useBlocks(dispatch);
 
   const handleBlockClick = ({ hash }) => {
     history.push(`block/${hash}`);

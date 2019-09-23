@@ -63,9 +63,9 @@ BlockSummary.propTypes = {
     bits: PropTypes.number.isRequired,
     size: PropTypes.number.isRequired,
     fee: PropTypes.number.isRequired,
-    time: PropTypes.number.isRequired,
+    time: PropTypes.string.isRequired,
     height: PropTypes.number.isRequired,
-    receivedTime: PropTypes.number.isRequired,
+    receivedTime: PropTypes.string.isRequired,
     relayedBy: PropTypes.string.isRequired,
   }).isRequired,
 };

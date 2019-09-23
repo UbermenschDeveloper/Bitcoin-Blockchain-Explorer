@@ -17,7 +17,7 @@ Blocks.propTypes = {
     PropTypes.shape({
       height: PropTypes.number.isRequired,
       hash: PropTypes.string.isRequired,
-      time: PropTypes.number.isRequired
+      time: PropTypes.string.isRequired
     }).isRequired
   )
 };

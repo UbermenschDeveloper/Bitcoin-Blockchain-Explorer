@@ -14,9 +14,9 @@ const normalizeBlock = block => ({
     bits: block.bits,
     size: block.size,
     fee: block.fee,
-    time: new Date(block.time * 1000).toDateString(),
+    time: unixToDateString(block.time),
     height: block.height,
-    receivedTime: block.received_time,
+    receivedTime: unixToDateString(block.received_time),
     relayedBy: block.relayed_by
   },
   hashes: {

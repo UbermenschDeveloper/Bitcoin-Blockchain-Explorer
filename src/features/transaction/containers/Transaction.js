@@ -8,8 +8,7 @@ import TransactionSummary from "../presentational/TransactionSummary";
 import Loader from "../../ui/Loader";
 import { fetchTransaction } from '../../../actions/transaction';
 
-const useTransaction = (hash) => {
-  const dispatch = useDispatch();
+const useTransaction = (hash, dispatch) => {
   const transaction = useSelector(state => state.transaction);
 
   useEffect(() => {
@@ -20,7 +19,7 @@ const useTransaction = (hash) => {
 };
 
 const Transaction = ({match}) => {
-  const {summary, direction} = useTransaction(match.params.hash);
+  const {summary, direction} = useTransaction(match.params.hash, useDispatch());
   
   if (!summary || !direction) return <Loader />;
 

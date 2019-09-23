@@ -9,8 +9,7 @@ import { fetchGraph } from '../../../actions/graph';
 import { fetchLastTransactions } from '../../../actions/lastTransactions';
 import { fetchLastBlocks } from '../../../actions/lastBlocks';
 
-const useGraph = () => {
-  const dispatch = useDispatch();
+const useGraph = (dispatch) => {
   const graph = useSelector(state => state.graph);
 
   useEffect(() => {
@@ -20,8 +19,7 @@ const useGraph = () => {
   return graph;
 };
 
-const useLastTransactions = () => {
-  const dispatch = useDispatch();
+const useLastTransactions = (dispatch) => {
   const lastTransactions = useSelector(state => state.lastTransactions);
 
   useEffect(() => {
@@ -31,8 +29,7 @@ const useLastTransactions = () => {
   return lastTransactions;
 };
 
-const useLastBlocks = () => {
-  const dispatch = useDispatch();
+const useLastBlocks = (dispatch) => {
   const lastBlocks = useSelector(state => state.lastBlocks);
 
   useEffect(() => {
@@ -43,9 +40,10 @@ const useLastBlocks = () => {
 };
 
 const Home = () => {
-  const graph = useGraph();
-  const lastTransactions = useLastTransactions();
-  const lastBlocks = useLastBlocks();
+  const dispatch = useDispatch();
+  const graph = useGraph(dispatch);
+  const lastTransactions = useLastTransactions(dispatch);
+  const lastBlocks = useLastBlocks(dispatch);
 
   if (!graph || !lastTransactions || !lastBlocks) return <Loader />;
 

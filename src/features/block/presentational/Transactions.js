@@ -24,7 +24,7 @@ Transactions.propTypes = {
     PropTypes.shape({
       weight: PropTypes.number.isRequired,
       hash: PropTypes.string.isRequired,
-      time: PropTypes.number.isRequired
+      time: PropTypes.string.isRequired
     }).isRequired
   ),
   onTransactionClick: PropTypes.func.isRequired
