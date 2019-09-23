@@ -1,13 +1,13 @@
 import axios from "axios";
-import { applyCORSToUrl } from "../utils";
+import { applyCORSToUrl, unixToDateString } from "../utils";
 import { FETCH_LAST_BLOCKS } from "../constants/types";
 import { URL_LAST_BLOCKS } from '../constants/api';
 
 const normalizeLastBlocks = ({ blocks }) =>
   blocks.slice(0, 10).map(({ height, time, hash }) => ({
     height,
-    time,
-    hash
+    time: unixToDateString(time),
+    hash,
   }));
 
 export const fetchLastBlocks = (timestamp = new Date().getTime()) => {

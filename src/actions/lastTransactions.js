@@ -1,13 +1,13 @@
 import axios from "axios";
-import { applyCORSToUrl } from "../utils";
+import { applyCORSToUrl, unixToDateString } from "../utils";
 import { FETCH_LAST_TRANSACTIONS } from "../constants/types";
 import { URL_LAST_TRANSACTIONS } from "../constants/api";
 
 const normalizeLastTransactionsPayload = ({ txs: transactions }) =>
   transactions.map(({ weight, time, hash }) => ({
     weight,
-    time,
-    hash
+    time: unixToDateString(time),
+    hash,
   }));
 
 export const fetchLastTransactions = () => {

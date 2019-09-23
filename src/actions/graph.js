@@ -1,12 +1,12 @@
 import axios from "axios";
-import { applyCORSToUrl } from "../utils";
+import { applyCORSToUrl, unixToDateString } from "../utils";
 import { FETCH_GRAPH } from "../constants/types";
 import { URL_GRAPH } from '../constants/api';
 
 const normalizeGraph = ({ values: graph }) =>
   graph.map(item => ({
     usd: item.y,
-    date: new Date(item.x * 1000).toDateString()
+    date: unixToDateString(item.x),
   }));
 
 export const fetchGraph = () => {

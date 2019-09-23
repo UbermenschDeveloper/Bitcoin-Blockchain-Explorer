@@ -1,12 +1,12 @@
 import axios from "axios";
-import { applyCORSToUrl } from "../utils";
+import { applyCORSToUrl, unixToDateString } from "../utils";
 import { FETCH_BLOCK } from "../constants/types";
 import { URL_BLOCK } from "../constants/api";
 
 const normalizeBlock = block => ({
   transactions: block.tx.map(({ weight, time, hash }) => ({
     weight,
-    time,
+    time: unixToDateString(time),
     hash
   })),
   summary: {
@@ -14,7 +14,7 @@ const normalizeBlock = block => ({
     bits: block.bits,
     size: block.size,
     fee: block.fee,
-    time: block.time,
+    time: new Date(block.time * 1000).toDateString(),
     height: block.height,
     receivedTime: block.received_time,
     relayedBy: block.relayed_by

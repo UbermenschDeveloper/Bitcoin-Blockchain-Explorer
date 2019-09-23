@@ -1,12 +1,12 @@
 import axios from "axios";
-import { applyCORSToUrl } from "../utils";
+import { applyCORSToUrl, unixToDateString } from "../utils";
 import { FETCH_BLOCKS } from "../constants/types";
 import { URL_BLOCKS } from '../constants/api';
 
 const normalizeBlocks = ({ blocks }) =>
   blocks.map(({ height, time, hash }) => ({
     height,
-    time,
+    time: unixToDateString(time),
     hash
   }));
 

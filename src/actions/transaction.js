@@ -1,5 +1,5 @@
 import axios from "axios";
-import { applyCORSToUrl, satoshiToBTC } from "../utils";
+import { applyCORSToUrl, satoshiToBTC, unixToDateString } from "../utils";
 import { FETCH_TRANSACTION } from "../constants/types";
 import { URL_TRANSACTION } from "../constants/api";
 
@@ -8,7 +8,7 @@ const normalizeTransactionPayload = transaction => ({
     hash: transaction.hash,
     size: transaction.size,
     weight: transaction.weight,
-    receivingTime: new Date(transaction.time * 1000).toDateString()
+    receivingTime: unixToDateString(transaction.time),
   },
   direction: {
     addressesFrom: transaction.inputs.map(input => ({
