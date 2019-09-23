@@ -25,7 +25,7 @@ const useLastTransactions = () => {
 
   useEffect(() => {
     dispatch(fetchLastTransactions());
-  }, []);
+  }, [dispatch]);
 
   return lastTransactions;
 };
@@ -36,7 +36,7 @@ const useLastBlocks = () => {
 
   useEffect(() => {
     dispatch(fetchLastBlocks());
-  }, []);
+  }, [dispatch]);
 
   return lastBlocks;
 };
