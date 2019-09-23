@@ -5,7 +5,7 @@ import Home from "./features/home/containers/Home";
 import Blocks from "./features/blocks/Blocks";
 import Block from "./features/block/containers/Block";
 import Transaction from "./features/transaction/containers/Transaction";
-import Header from "./features/header/Header";
+import Header from "./features/ui/Header";
 
 function App() {
   return (

@@ -10,6 +10,10 @@ import { fade, makeStyles } from "@material-ui/core/styles";
 
 const TITLE = "Bitcoin Blockchain Explorer";
 
+/**
+ * Following code is taken from https://material-ui.com/ docs
+ */
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
