@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
-import TransactionLayout from "../components/TransactionLayout";
-import TransactionDirection from "../components/TransactionDirection";
-import TransactionSummary from "../components/TransactionSummary";
+import TransactionLayout from "../presentational/TransactionLayout";
+import TransactionDirection from "../presentational/TransactionDirection";
+import TransactionSummary from "../presentational/TransactionSummary";
 import Loader from "../../ui/Loader";
 import { fetchTransaction } from '../../../actions/transaction';
 

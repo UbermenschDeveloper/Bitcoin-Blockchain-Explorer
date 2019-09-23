@@ -45,7 +45,7 @@ const TransactionDirection = ({
   </Card>
 );
 
-Transaction.propTypes = {
+TransactionDirection.propTypes = {
   transactionHash: PropTypes.string.isRequired,
   addresses: PropTypes.shape({
     addressesFrom: PropTypes.arrayOf(

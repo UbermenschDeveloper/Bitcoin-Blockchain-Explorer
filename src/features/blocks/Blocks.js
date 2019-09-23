@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import BlocksLayout from "./BlocksLayout";
+import Loader from "../ui/Loader";
 import { fetchBlocks } from "../../actions/blocks";
 
 const useBlocks = () => {
@@ -22,6 +23,8 @@ const Blocks = ({ history }) => {
   const handleBlockClick = ({ hash }) => {
     history.push(`block/${hash}`);
   };
+
+  if (!blocks) return <Loader />;
 
   return <BlocksLayout blocks={blocks} onBlockClick={handleBlockClick} />;
 };

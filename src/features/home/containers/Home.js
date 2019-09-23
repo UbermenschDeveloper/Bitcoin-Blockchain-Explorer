@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Graph from "../components/Graph";
-import Blocks from "../components/Blocks";
-import Transactions from "../components/Transactions";
-import HomeLayout from "../components/HomeLayout";
+import Graph from "../presentational/Graph";
+import Blocks from "../presentational/Blocks";
+import Transactions from "../presentational/Transactions";
+import HomeLayout from "../presentational/HomeLayout";
+import Loader from "../../ui/Loader";
 import { fetchGraph } from '../../../actions/graph';
 import { fetchLastTransactions } from '../../../actions/lastTransactions';
 import { fetchLastBlocks } from '../../../actions/lastBlocks';
@@ -45,6 +46,9 @@ const Home = () => {
   const graph = useGraph();
   const lastTransactions = useLastTransactions();
   const lastBlocks = useLastBlocks();
+
+  if (!graph || !lastTransactions || !lastBlocks) return <Loader />;
+
 
   return (
     <HomeLayout

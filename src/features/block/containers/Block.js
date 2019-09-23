@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
-import BlockLayout from "../components/BlockLayout";
-import Transactions from "../components/Transactions";
-import Hashes from "../components/Hashes";
-import BlockSummary from "../components/BlockSummary";
+import BlockLayout from "../presentational/BlockLayout";
+import Transactions from "../presentational/Transactions";
+import Hashes from "../presentational/Hashes";
+import BlockSummary from "../presentational/BlockSummary";
 import Loader from "../../ui/Loader";
 import { fetchBlock } from "../../../actions/block";
 
