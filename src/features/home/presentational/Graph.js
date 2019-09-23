@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import PropTypes from "prop-types";
 import {
   LineChart,
@@ -12,7 +12,6 @@ import Card from "../../ui/Card";
 
 const TITLE = "Market Price (USD)";
 
-// TODO use React.memo
 const Graph = ({ data }) => (
   <Card title={TITLE}>
     <LineChart width={800} height={300} data={data}>
@@ -34,4 +33,4 @@ Graph.propTypes = {
   ).isRequired
 };
 
-export default Graph;
+export default memo(Graph);
