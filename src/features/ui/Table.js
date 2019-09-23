@@ -8,6 +8,10 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Typography from "@material-ui/core/Typography";
 
+/**
+ * Following code is taken from https://material-ui.com/ docs
+ */
+
 const useStyles = makeStyles({
   cell: {
     maxWidth: 120

@@ -5,6 +5,10 @@ import Typography from "@material-ui/core/Typography";
 import MaterialCard from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 
+/**
+ * Following code is taken from https://material-ui.com/ docs
+ */
+
 const useStyles = makeStyles({
   title: {
     fontSize: 14,
