@@ -1,11 +1,11 @@
 import {FETCH_BLOCKS} from '../constants/types';
 
-const blocks = (state = [], action) => {
-  switch (action.type) {
+const blocks = (state = [], {type, payload}) => {
+  switch (type) {
     case FETCH_BLOCKS:
       return [
         ...state,
-        ...action.payload,
+        ...payload,
       ];
     default:
       return state;

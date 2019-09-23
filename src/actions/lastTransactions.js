@@ -15,10 +15,10 @@ export const fetchLastTransactions = () => {
     const url = applyCORSToUrl(`${URL_LAST_TRANSACTIONS}`);
     return axios
       .get(url)
-      .then(response => {
+      .then(({data}) => {
         dispatch({
           type: FETCH_LAST_TRANSACTIONS,
-          payload: normalizeLastTransactionsPayload(response.data)
+          payload: normalizeLastTransactionsPayload(data)
         });
       })
       .catch(error => {

@@ -15,10 +15,10 @@ export const fetchBlocks = (timestamp = new Date().getTime()) => {
     const url = applyCORSToUrl(`${URL_BLOCKS}/${timestamp}`);
     return axios
       .get(url)
-      .then(response => {
+      .then(({data}) => {
         dispatch({
           type: FETCH_BLOCKS,
-          payload: normalizeBlocks(response.data)
+          payload: normalizeBlocks(data)
         });
       })
       .catch(error => {

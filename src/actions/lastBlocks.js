@@ -15,10 +15,10 @@ export const fetchLastBlocks = (timestamp = new Date().getTime()) => {
     const url = applyCORSToUrl(`${URL_LAST_BLOCKS}/${timestamp}`);
     return axios
       .get(url)
-      .then(response => {
+      .then(({data}) => {
         dispatch({
           type: FETCH_LAST_BLOCKS,
-          payload: normalizeLastBlocks(response.data)
+          payload: normalizeLastBlocks(data)
         });
       })
       .catch(error => {

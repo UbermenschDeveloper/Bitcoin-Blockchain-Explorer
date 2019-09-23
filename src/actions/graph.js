@@ -14,8 +14,8 @@ export const fetchGraph = () => {
     const url = applyCORSToUrl(`${URL_GRAPH}`);
     return axios
       .get(`${url}&timespan=30days`)
-      .then(response => {
-        dispatch({ type: FETCH_GRAPH, payload: normalizeGraph(response.data) });
+      .then(({data}) => {
+        dispatch({ type: FETCH_GRAPH, payload: normalizeGraph(data) });
       })
       .catch(error => {
         throw error;

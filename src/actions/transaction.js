@@ -26,10 +26,10 @@ export const fetchTransaction = hash => {
     const url = applyCORSToUrl(`${URL_TRANSACTION}/${hash}`);
     return axios
       .get(url)
-      .then(response => {
+      .then(({data}) => {
         dispatch({
           type: FETCH_TRANSACTION,
-          payload: normalizeTransactionPayload(response.data)
+          payload: normalizeTransactionPayload(data)
         });
       })
       .catch(error => {

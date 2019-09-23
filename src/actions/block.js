@@ -32,8 +32,8 @@ export const fetchBlock = hash => {
     const url = applyCORSToUrl(`${URL_BLOCK}/${hash}`);
     return axios
       .get(url)
-      .then(response => {
-        dispatch({ type: FETCH_BLOCK, payload: normalizeBlock(response.data) });
+      .then(({data}) => {
+        dispatch({ type: FETCH_BLOCK, payload: normalizeBlock(data) });
       })
       .catch(error => {
         throw error;

@@ -1,11 +1,11 @@
 import {FETCH_TRANSACTION} from '../constants/types';
 
-const transaction = (state = {}, action) => {
-  switch (action.type) {
+const transaction = (state = {}, {type, payload}) => {
+  switch (type) {
     case FETCH_TRANSACTION:
       return {
         ...state,
-        ...action.payload,
+        ...payload,
       };
     default:
       return state;
