@@ -1,6 +1,6 @@
 ## Stack
 
-ReactJS, Redux, Redux-Thunk, Axios, React-Router, Material-UI, Recharts, Satoshi-Bitcoin.
+ReactJS, Redux, Redux-Thunk, Axios, React-Router, Material-UI, Recharts, Satoshi-Bitcoin. Didn't use Immutable.js.
 
 ## Notice
 Didn't provide search by block height, since corresponding request (https://www.blockchain.com/api/blockchain_api) does not support CORS!
